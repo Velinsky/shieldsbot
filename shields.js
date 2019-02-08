@@ -25,6 +25,7 @@ module.exports = {
 		shields[name] = shield;
 
 		fs.writeFileSync(path.join(__dirname, 'persistence.json'), JSON.stringify(shields))
+		return shield;
 	},
 	getActiveShields() {
 		let now = moment();

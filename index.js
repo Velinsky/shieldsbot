@@ -3,6 +3,7 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 const shields = require('./shields');
+const parseMessage = require('./parseMessage');
 
 // create LINE SDK config from env variables
 const config = {
@@ -38,6 +39,22 @@ app.get('/list', (req, res) => {
 	res.send(shields.getActiveShields())
 })
 
+app.get('/parse/:message', (req, res) => {
+	let parsed = parseMessage(req.params.message)
+	if (!parsed) {
+		res.send("NOT SHIELD MESSAGE");
+		return;
+	}
+
+	if (parsed.error) {
+		res.send(parsed.message);
+		return;
+	}
+
+	shields.addShield("test", parsed.duration, parsed.amount)
+	res.send(parsed);
+})
+
 // event handler
 function handleEvent(event) {
 	if (event.type !== 'message' || event.message.type !== 'text') {
@@ -45,8 +62,33 @@ function handleEvent(event) {
 		return Promise.resolve(null);
 	}
 
-	// create a echoing text message
-	const echo = { type: 'text', text: event.message.text };
+
+	// LIST SHIELDS
+	if (req.params.message.toLowerCase().startsWith("shields")) {
+		return client.replyMessage(event.replyToken, { type: "text", text: JSON.stringify(shields.getActiveShields(), null, 2)});
+	}
+
+	// ADD SHIELD
+	let replyText = '';
+	let userName = event.message.source.userId;
+	let parsed = parseMessage(event.message.text)
+
+	// no shield message
+	if (!parsed) {
+		return Promise.resolve(null);
+	}
+
+	// parsing error
+	if (parsed.error) {
+		replyText = parsed.message
+	}
+	// all good here
+	else {
+		shields.addShield(userName, parsed.duration, parsed.amount)
+		replyText = `Registered new shield for user [${userName}], ends in [${parsed.amount}] [${parsed.duration}].`
+	}
+
+	let echo = { type: 'text', text: replyText };
 
 	// use reply API
 	return client.replyMessage(event.replyToken, echo);
