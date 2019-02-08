@@ -13,8 +13,8 @@ module.exports = function(msg) {
 	}
 
 	return {
-		duration: matches[1],
-		amount: matches[2],
+		unit: matches[2],
+		amount: matches[1],
 		comment: matches[3] ? matches[3].replace(":", "").trim() : ""
 	}
 }

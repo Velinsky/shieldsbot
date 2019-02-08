@@ -5,13 +5,11 @@ const R = require('ramda')
 
 let file = JSON.parse(fs.readFileSync(path.join(__dirname, 'persistence.json')))
 
-function createShield(name, duration, comment) {
-	let [amount, unit] = duration.split(" ")
-
+function createShield(name, unit, amount, comment) {
 	return {
 		name,
 		comment,
-		duration,
+		duration: amount + " " + unit,
 		start: +new Date,
 		end: +moment().add(amount, unit)
 	}
@@ -20,8 +18,8 @@ function createShield(name, duration, comment) {
 let shields = file || {}
 
 module.exports = {
-	addShield(name, duration, comment) {
-		let shield = createShield(name, duration, comment);
+	addShield(name, unit, amount, comment) {
+		let shield = createShield(name, unit, amount, comment);
 		shields[name] = shield;
 
 		fs.writeFileSync(path.join(__dirname, 'persistence.json'), JSON.stringify(shields))

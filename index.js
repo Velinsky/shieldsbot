@@ -31,7 +31,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
 });
 
 app.get('/add/:name/:duration', (req, res) => {
-	shields.addShield(req.params.name, req.params.duration)
+	// shields.addShield(req.params.name, req.params.unit)
 	res.send(shields.getActiveShields())
 })
 
@@ -52,7 +52,7 @@ app.get('/parse/:message', (req, res) => {
 		return;
 	}
 
-	shields.addShield("test", parsed.duration, parsed.amount)
+	shields.addShield("test", parsed.unit, parsed.amount)
 	res.send(parsed);
 })
 
@@ -88,8 +88,8 @@ function handleEvent(event) {
 	}
 	// all good here
 	else {
-		shields.addShield(userName, parsed.duration, parsed.amount)
-		replyText = `Registered new shield for user [${userName}], ends in [${parsed.amount}] [${parsed.duration}].`
+		shields.addShield(userName, parsed.unit, parsed.amount)
+		replyText = `Registered new shield for user [${userName}], ends in [${parsed.amount}] [${parsed.unit}].`
 	}
 
 	let echo = { type: 'text', text: replyText };
