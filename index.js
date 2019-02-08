@@ -57,7 +57,7 @@ app.get('/parse/:message', (req, res) => {
 })
 
 // event handler
-function handleEvent(event) {
+async function handleEvent(event) {
 	if (event.type !== 'message' || event.message.type !== 'text') {
 		// ignore non-text-message event
 		return Promise.resolve(null);
@@ -83,8 +83,10 @@ function handleEvent(event) {
 
 	// ADD SHIELD
 	let replyText = '';
-	let userName = event.source.userId;
-	console.log(event)
+	let profile = await client.getProfile(event.source.userId)
+	console.log(profile)
+	let userName = profile.displayName;
+
 	let parsed = parseMessage(incomingMsg)
 
 	// no shield message
