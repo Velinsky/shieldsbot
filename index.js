@@ -64,6 +64,7 @@ function handleEvent(event) {
 
 	let incomingMsg = event.message.text
 
+	console.log('handling incoming message', incomingMsg);
 	// LIST SHIELDS
 	if (incomingMsg.toLowerCase().startsWith("shields")) {
 		return client.replyMessage(event.replyToken, { type: "text", text: JSON.stringify(shields.getActiveShields(), null, 2)});
