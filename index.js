@@ -68,7 +68,17 @@ function handleEvent(event) {
 	console.log('handling incoming message', incomingMsg);
 	// LIST SHIELDS
 	if (incomingMsg.toLowerCase().startsWith("shields")) {
-		return client.replyMessage(event.replyToken, { type: "text", text: JSON.stringify(shields.getActiveShields(), null, 2)});
+		let msg = "Active shields\n\n";
+		shields.getActiveShields().forEach((shield) => {
+			msg += `You can hide at ${shield.name}'s turf, his shield expires in ${shield.expiresInHuman}`
+
+			if (shield.comment) {
+				msg += `(${shield.comment})`
+			}
+
+			msg += "\n"
+		})
+		return client.replyMessage(event.replyToken, { type: "text", text: msg});
 	}
 
 	// ADD SHIELD
@@ -88,7 +98,7 @@ function handleEvent(event) {
 	}
 	// all good here
 	else {
-		shields.addShield(userName, parsed.unit, parsed.amount)
+		shields.addShield(userName, parsed.unit, parsed.amount, parsed.comment)
 		replyText = `Registered new shield for user [${userName}], ends in [${parsed.amount}] [${parsed.unit}].`
 	}
 
