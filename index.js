@@ -62,16 +62,17 @@ function handleEvent(event) {
 		return Promise.resolve(null);
 	}
 
+	let incomingMsg = event.message.text
 
 	// LIST SHIELDS
-	if (req.params.message.toLowerCase().startsWith("shields")) {
+	if (incomingMsg.toLowerCase().startsWith("shields")) {
 		return client.replyMessage(event.replyToken, { type: "text", text: JSON.stringify(shields.getActiveShields(), null, 2)});
 	}
 
 	// ADD SHIELD
 	let replyText = '';
 	let userName = event.message.source.userId;
-	let parsed = parseMessage(event.message.text)
+	let parsed = parseMessage(incomingMsg)
 
 	// no shield message
 	if (!parsed) {
