@@ -73,7 +73,8 @@ function handleEvent(event) {
 
 	// ADD SHIELD
 	let replyText = '';
-	let userName = event.message.source.userId;
+	let userName = event.source.userId;
+	console.log(event)
 	let parsed = parseMessage(incomingMsg)
 
 	// no shield message
