@@ -40,6 +40,7 @@ app.get('/list', (req, res) => {
 })
 
 app.get('/parse/:message', (req, res) => {
+	console.log("TEST PARSE")
 	let parsed = parseMessage(req.params.message)
 	if (!parsed) {
 		res.send("NOT SHIELD MESSAGE");
