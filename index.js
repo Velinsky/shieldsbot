@@ -83,8 +83,10 @@ async function handleEvent(event) {
 
 	// ADD SHIELD
 	let replyText = '';
-	let profile = await client.getProfile(event.source.userId)
-	console.log(profile)
+	let profile = await client.getGroupMemberProfile(event.source.groupId, event.source.userId)
+	console.log("source", event.source)
+	console.log("profile", profile)
+
 	let userName = profile.displayName;
 
 	let parsed = parseMessage(incomingMsg)
