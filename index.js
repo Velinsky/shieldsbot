@@ -2,8 +2,25 @@
 
 const line = require('@line/bot-sdk');
 const express = require('express');
-const shields = require('./shields');
-const parseMessage = require('./parseMessage');
+const replyToCommand = require('./replyToCommand')
+const memoryPersistence = require('./persistence/memoryPersistence')
+const shieldsCmd = require('./commands/shields')
+const shieldsListCmd = require('./commands/shieldsList')
+
+
+let persistence = memoryPersistence.create()
+let replier = replyToCommand.create(persistence, [
+	{
+		// matches: "",
+		startsWith: shieldsCmd.OPCODE,
+		handler: shieldsCmd.handler
+	},
+	{
+		exact: shieldsListCmd.EXACT,
+		handler: shieldsListCmd.handler
+	}
+])
+
 
 // create LINE SDK config from env variables
 const config = {
@@ -67,19 +84,7 @@ async function handleEvent(event) {
 
 	console.log('handling incoming message', incomingMsg);
 	// LIST SHIELDS
-	if (incomingMsg.toLowerCase().startsWith("shields")) {
-		let msg = "Active shields\n\n";
-		shields.getActiveShields().forEach((shield) => {
-			msg += `You can hide at ${shield.name}'s turf, his shield expires in ${shield.expiresInHuman}`
 
-			if (shield.comment) {
-				msg += `(${shield.comment})`
-			}
-
-			msg += "\n"
-		})
-		return client.replyMessage(event.replyToken, { type: "text", text: msg});
-	}
 
 	// ADD SHIELD
 	let replyText = '';
@@ -89,24 +94,13 @@ async function handleEvent(event) {
 
 	let userName = profile.displayName;
 
-	let parsed = parseMessage(incomingMsg)
+	let result = await replier.textInput(cmd, { userName });
 
-	// no shield message
-	if (!parsed) {
-		return Promise.resolve(null);
+	if (!result) {
+		return Promise.resolve(null)
 	}
 
-	// parsing error
-	if (parsed.error) {
-		replyText = parsed.message
-	}
-	// all good here
-	else {
-		shields.addShield(userName, parsed.unit, parsed.amount, parsed.comment)
-		replyText = `Registered new shield for user [${userName}], ends in [${parsed.amount}] [${parsed.unit}].`
-	}
-
-	let echo = { type: 'text', text: replyText };
+	let echo = { type: 'text', text: result };
 
 	// use reply API
 	return client.replyMessage(event.replyToken, echo);
