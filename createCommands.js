@@ -18,6 +18,10 @@ module.exports = function (persistence) {
 		{
 			exact: randomCmd.EXACT,
 			handler: randomCmd.handler
+		},
+		{
+			startsWith: randomCmd.STARTS_WITH,
+			handler: randomCmd.handler
 		}
 	])
 }

@@ -6,7 +6,7 @@ module.exports.create = (persistence, commands) => {
 
 			for (let i = 0; i < commands.length; i++) {
 				let singleCommand = commands[i];
-				if (singleCommand.startsWith && cmd.toLowerCase().startsWith(singleCommand.startsWith)) {
+				if (singleCommand.startsWith && cmd.toLowerCase().startsWith(singleCommand.startsWith.toLowerCase())) {
 					matchingCommand = singleCommand
 					break;
 				}
