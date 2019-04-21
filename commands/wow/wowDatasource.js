@@ -11,7 +11,7 @@ module.exports = async (persistence) => {
 		},
 
 		nextWowTimezone(timezone) {
-			return moment(wowTimestamp).format("DD. HH:mm:ss")
+			return moment(wowTimestamp).format("DD. MMM HH:mm:ss")
 		},
 
 		nextWowIn() {
