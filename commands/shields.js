@@ -1,5 +1,5 @@
 const shieldsDatasource = require('./shieldsDatasource')
-const OPCODE = "shield "
+const OPCODE = "!shield "
 
 const parseMessage = (msg) => {
 	let matches = msg.replace(new RegExp(OPCODE, "i"), "").match(/([0-9]+) ([a-z]+)(:.*)?/)

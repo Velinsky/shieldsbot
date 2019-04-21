@@ -1,4 +1,4 @@
-const OPCODE = ".random"
+const OPCODE = "!random"
 
 module.exports.EXACT = OPCODE;
 module.exports.STARTS_WITH = "ShieldsBot,";

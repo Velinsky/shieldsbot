@@ -3,6 +3,8 @@ const replyToCommand = require('./replyToCommand')
 const shieldsCmd = require('./commands/shields')
 const shieldsListCmd = require('./commands/shieldsList')
 const randomCmd = require('./commands/random')
+const wowRegisterCmd = require('./commands/wow/wowRegister')
+const wowGetCmd = require('./commands/wow/wowGet')
 
 module.exports = function (persistence) {
 	return replyToCommand.create(persistence, [
@@ -22,6 +24,14 @@ module.exports = function (persistence) {
 		{
 			startsWith: randomCmd.STARTS_WITH,
 			handler: randomCmd.handler
+		},
+		{
+			startsWith: wowRegisterCmd.STARTS_WITH,
+			handler: wowRegisterCmd.handler
+		},
+		{
+			startsWith: wowGetCmd.STARTS_WITH,
+			handler: wowGetCmd.handler
 		}
 	])
 }

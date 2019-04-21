@@ -1,5 +1,5 @@
 const shieldsDatasouce = require('./shieldsDatasource')
-const EXACT = 'shields'
+const EXACT = '!shields'
 
 
 module.exports.EXACT = EXACT;
