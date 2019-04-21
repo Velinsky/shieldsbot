@@ -12,8 +12,8 @@ function createShield(name, unit, amount, comment) {
 	}
 }
 
-module.exports = (persistence) => {
-	let shields = persistence.getKey(PERSISTENCE_KEY) || {}
+module.exports = async (persistence) => {
+	let shields = await persistence.getKey(PERSISTENCE_KEY) || {}
 
 	return {
 		addShield(name, unit, amount, comment) {

@@ -3,12 +3,13 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 const replyToCommand = require('./replyToCommand')
-const memoryPersistence = require('./persistence/memoryPersistence')
+// const persistenceBase = require('./persistence/memoryPersistence')
+const persistenceBase = require('./persistence/redisPersistence')
 const shieldsCmd = require('./commands/shields')
 const shieldsListCmd = require('./commands/shieldsList')
 
 
-let persistence = memoryPersistence.create()
+let persistence = persistenceBase.create()
 let replier = replyToCommand.create(persistence, [
 	{
 		// matches: "",

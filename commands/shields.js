@@ -1,4 +1,4 @@
-const shieldsBase = require('./shieldsDatasource')
+const shieldsDatasource = require('./shieldsDatasource')
 const OPCODE = "shield "
 
 const parseMessage = (msg) => {
@@ -19,8 +19,8 @@ const parseMessage = (msg) => {
 }
 
 module.exports.OPCODE = OPCODE;
-module.exports.handler = function(message, user, persistence, noOpcode) {
-	let shields = shieldsBase(persistence);
+module.exports.handler = async function(message, user, persistence, noOpcode) {
+	let shields = await shieldsDatasource(persistence);
 	let parsed = parseMessage(message)
 
 	// parsing error

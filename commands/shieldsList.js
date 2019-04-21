@@ -1,10 +1,10 @@
-const shieldsBase = require('./shieldsDatasource')
+const shieldsDatasouce = require('./shieldsDatasource')
 const EXACT = 'shields'
 
 
 module.exports.EXACT = EXACT;
-module.exports.handler = function(message, user, persistence, noOpcode) {
-	let shields = shieldsBase(persistence);
+module.exports.handler = async function(message, user, persistence, noOpcode) {
+	let shields = await shieldsDatasouce(persistence);
 	let msg = '';
 
 	if (shields.getActiveShields().length === 0) {
