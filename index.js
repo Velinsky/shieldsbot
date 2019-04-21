@@ -1,27 +1,13 @@
 'use strict';
-
 const line = require('@line/bot-sdk');
 const express = require('express');
-const replyToCommand = require('./replyToCommand')
+
+const createCommands = require('./createCommands')
 // const persistenceBase = require('./persistence/memoryPersistence')
 const persistenceBase = require('./persistence/redisPersistence')
-const shieldsCmd = require('./commands/shields')
-const shieldsListCmd = require('./commands/shieldsList')
-
 
 let persistence = persistenceBase.create()
-let replier = replyToCommand.create(persistence, [
-	{
-		// matches: "",
-		startsWith: shieldsCmd.OPCODE,
-		handler: shieldsCmd.handler
-	},
-	{
-		exact: shieldsListCmd.EXACT,
-		handler: shieldsListCmd.handler
-	}
-])
-
+let replier = createCommands(persistence)
 
 // create LINE SDK config from env variables
 const config = {
