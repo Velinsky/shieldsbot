@@ -20,7 +20,7 @@ module.exports.create = (persistence, commands) => {
 				return matchingCommand.handler(cmd, user, persistence)
 			}
 
-			return Promise.resolve(true);
+			return Promise.resolve(false);
 
 			// return Promise.reject({
 			// 	error: "ERR_NOT_FOUND",
