@@ -21,11 +21,6 @@ module.exports.create = (persistence, commands) => {
 			}
 
 			return Promise.resolve(false);
-
-			// return Promise.reject({
-			// 	error: "ERR_NOT_FOUND",
-			// 	message: `No command executed for the message [${cmd}]`
-			// })
 		}
 	}
 }
