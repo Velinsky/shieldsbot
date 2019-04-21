@@ -95,7 +95,7 @@ async function handleEvent(event) {
 
 	let userName = profile.displayName;
 
-	let result = await replier.textInput(cmd, { userName });
+	let result = await replier.textInput(incomingMsg, { userName });
 
 	if (!result) {
 		return Promise.resolve(null)
