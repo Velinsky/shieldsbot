@@ -10,7 +10,7 @@ module.exports.create = (persistence, commands) => {
 					matchingCommand = singleCommand
 					break;
 				}
-				else if (singleCommand.exact && singleCommand.exact === cmd) {
+				else if (singleCommand.exact && singleCommand.exact.toLowerCase() === cmd.toLowerCase()) {
 					matchingCommand = singleCommand;
 					break;
 				}
