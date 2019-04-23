@@ -1,8 +1,8 @@
 const shieldsDatasource = require('./shieldsDatasource')
-const OPCODE = "!shield "
+const STARTS_WITH = "!shield "
 
 const parseMessage = (msg) => {
-	let matches = msg.replace(new RegExp(OPCODE, "i"), "").match(/([0-9]+) ([a-z]+)(:.*)?/)
+	let matches = msg.replace(new RegExp(STARTS_WITH, "i"), "").match(/([0-9]+) ([a-z]+)(:.*)?/)
 
 	if (!matches) {
 		return {
@@ -18,7 +18,16 @@ const parseMessage = (msg) => {
 	}
 }
 
-module.exports.OPCODE = OPCODE;
+module.exports.STARTS_WITH = STARTS_WITH;
+module.exports.help = `
+Add a new shield to the available shields in the guild people can hide troops at. 
+Example:
+!shield add 2 days
+!shield add 36 minutes:Spartan likes big fat cocks
+
+You can use any unit you want (week, month, day, hour, minute) in plural / singular form. Add a message of your liking after the : as a note to your shields entry`
+module.exports.description = "Add shield to the list of guild shields to hide troops at."
+
 module.exports.handler = async function(message, user, persistence, noOpcode) {
 	let shields = await shieldsDatasource(persistence);
 	let parsed = parseMessage(message)

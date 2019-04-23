@@ -4,6 +4,11 @@ const wowDatasource = require("./wowDatasource")
 const OPCODE = "!next wow in "
 
 module.exports.STARTS_WITH = OPCODE;
+module.exports.help = `
+Set when next wow will take place. Use the same format as in game, meaning add remaining time to next wow in days hours minutes, for example:
+!next wow in 2:10:15
+adds new wow entry to take place in 2 days, 10 hours and 15 minutes`
+module.exports.description = "Set time of next wow"
 module.exports.handler = async function(message, user, persistence) {
 	let datasource = await wowDatasource(persistence)
 

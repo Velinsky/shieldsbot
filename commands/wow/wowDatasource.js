@@ -20,7 +20,7 @@ module.exports = async (persistence) => {
 			}
 
 			let duration = moment.duration(moment(wowTimestamp).diff())
-			return `Next War of Wonders is in ${duration.days()} days ${duration.hours()} hours from now.`
+			return `Next War of Wonders is in ${duration.days()} days, ${duration.hours()} hours and ${duration.minutes()} minutes from now.`
 		}
 	}
 }
