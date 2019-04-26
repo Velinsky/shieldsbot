@@ -28,6 +28,7 @@ Example:
 You can use any unit you want (week, month, day, hour, minute) in plural / singular form. Add a message of your liking after the : as a note to your shields entry`
 module.exports.description = "Add shield to the list of guild shields to hide troops at."
 
+module.exports.needsUser = true;
 module.exports.handler = async function(message, user, persistence, noOpcode) {
 	let shields = await shieldsDatasource(persistence);
 	let parsed = parseMessage(message)

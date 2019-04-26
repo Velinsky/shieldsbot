@@ -75,12 +75,17 @@ async function handleEvent(event) {
 
 	// ADD SHIELD
 	let replyText = '';
+	let userName;
+
 	console.log("source", event.source)
-	let profile = await client.getGroupMemberProfile(event.source.groupId, event.source.userId)
-
-	console.log("profile", profile)
-
-	let userName = profile.displayName;
+	if (event.source.userId) {
+		let profile = await client.getGroupMemberProfile(event.source.groupId, event.source.userId)
+		console.log("profile", profile)
+		userName = profile.displayName;
+	}
+	else {
+		userName = null
+	}
 
 	let result = await replier.textInput(incomingMsg, { userName });
 
