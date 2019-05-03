@@ -74,11 +74,13 @@ async function handleEvent(event) {
 	// ADD SHIELD
 	let replyText = '';
 	let userName;
+	let userId;
 
 	console.log("source", event.source)
 	if (event.source.userId) {
 		let profile = await client.getGroupMemberProfile(event.source.groupId, event.source.userId)
 		console.log("profile", profile)
+		userId = event.source.userId
 		userName = profile.displayName;
 	}
 	else {
@@ -93,7 +95,7 @@ async function handleEvent(event) {
 		return Promise.resolve(null);
 	}
 
-	let result = await replier.textInput(incomingMsg, { userName });
+	let result = await replier.textInput(incomingMsg, { userName, userId }, client);
 
 	if (!result) {
 		return Promise.resolve(null)

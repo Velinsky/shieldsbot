@@ -1,8 +1,8 @@
-const flexWrapper = require('./_utils/messageHelpers').flexWrapper
+const flexWrapper = require('../_utils/messageHelpers').flexWrapper
 
-const OPCODE = "!flexTest"
+const OPCODE = "!alert "
 
-module.exports.EXACT = OPCODE;
+module.exports.STARTS_WITH = OPCODE;
 module.exports.help = ""
 module.exports.description = ""
 module.exports.handler = async function(message, user, persistence, noOpcode) {

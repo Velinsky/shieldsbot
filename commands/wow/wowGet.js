@@ -58,7 +58,7 @@ module.exports.handler = async function(message, user, persistence) {
 	})
 
 
-	return Promise.resolve(flexWrapper({
+	return Promise.resolve(flexWrapper(datasource.nextWowIn(), {
 		'type': 'bubble',
 		'header': {
 			'type': 'box',
@@ -85,8 +85,8 @@ module.exports.handler = async function(message, user, persistence) {
 			'contents': [
 				{
 					size: "sm",
-					'type': 'text',
-					'text': datasource.nextWowIn()
+					type: 'text',
+					text: datasource.nextWowIn()
 				}
 			]
 		}

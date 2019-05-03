@@ -32,7 +32,7 @@ const createHelpForCommand = (text, commands) => {
 
 module.exports.create = (persistence, commands) => {
 	return {
-		textInput(cmd, user) {
+		textInput(cmd, user, lineApiClient) {
 			let matchingCommand;
 			let matchedWithStartsWith = false;
 
@@ -59,7 +59,7 @@ module.exports.create = (persistence, commands) => {
 				if (!user.userName && matchingCommand.needsUser) {
 					return Promise.resolve(`Sorry, I can't respond to [${cmd}] since LINE API won't send me your ID. Try adding me to friends first.`)
 				}
-				return matchingCommand.handler(cmd, user, persistence)
+				return matchingCommand.handler(cmd, user, persistence, lineApiClient)
 			}
 
 			return Promise.resolve(false);

@@ -1,0 +1,1 @@
+module.exports.E_GROUP_NOT_FOUND = "E_GROUP_NOT_FOUND"

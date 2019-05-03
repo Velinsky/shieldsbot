@@ -1,12 +1,20 @@
-const flexWrapper = require('./_utils/messageHelpers').flexWrapper
+const flexWrapper = require('../_utils/messageHelpers').flexWrapper
+const groupsDatasource = require('./groupsDatasource')
 
-const OPCODE = "!flexTest"
+const OPCODE = "!groups"
 
 module.exports.EXACT = OPCODE;
 module.exports.help = ""
 module.exports.description = ""
-module.exports.handler = async function(message, user, persistence, noOpcode) {
-	return flexWrapper("flex test", {
+module.exports.handler = async function(message, user, persistence) {
+	let datasource = await groupsDatasource(persistence);
+	let noOpcode = message.replace(OPCODE, "");
+
+	let groups = datasource.listGroups();
+
+	console.log(groups)
+
+	return flexWrapper("all groups", {
 		"type": "bubble",
 		"body": {
 			"type": "box",

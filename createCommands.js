@@ -7,8 +7,14 @@ const wowRegisterCmd = require('./commands/wow/wowRegister')
 const wowGetCmd = require('./commands/wow/wowGet')
 const authorCmd = require('./commands/author')
 const flexTest = require('./commands/flexTest')
+const groupAdd = require('./commands/groups/groupAdd')
+const groupAlert = require('./commands/groups/groupAlert')
+const groupList = require('./commands/groups/groupList')
+const groupSingleList = require('./commands/groups/groupSingleList')
+const groupRemove = require('./commands/groups/groupRemove')
 
-let cmds = [shieldsCmd, shieldsListCmd, randomCmd, wowRegisterCmd, wowGetCmd, authorCmd, flexTest];
+let cmds = [shieldsCmd, shieldsListCmd, randomCmd, wowRegisterCmd, wowGetCmd, authorCmd, flexTest,
+	groupAdd, groupAlert, groupList, groupSingleList, groupRemove];
 
 module.exports = function (persistence) {
 	let mappedCommands = cmds.map(cmd => {

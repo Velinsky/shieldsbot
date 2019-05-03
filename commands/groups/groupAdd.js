@@ -1,12 +1,26 @@
-const flexWrapper = require('./_utils/messageHelpers').flexWrapper
+const flexWrapper = require('../_utils/messageHelpers').flexWrapper
+const groupsDatasource = require('./groupsDatasource')
 
-const OPCODE = "!flexTest"
+const OPCODE = "!group add "
 
-module.exports.EXACT = OPCODE;
+module.exports.STARTS_WITH = OPCODE;
 module.exports.help = ""
 module.exports.description = ""
-module.exports.handler = async function(message, user, persistence, noOpcode) {
-	return flexWrapper("flex test", {
+/**
+ *
+ * @param message
+ * @param {MessageUserProfile} user
+ * @param persistence
+ * @param noOpcode
+ * @returns {Promise<{type, altText, contents}>}
+ */
+module.exports.handler = async function(message, user, persistence) {
+	let datasource = await groupsDatasource(persistence);
+	let noOpcode = message.replace(OPCODE, "");
+
+	datasource.addToGroup(user, noOpcode)
+
+	return flexWrapper(`${user.userName} was added to group ${noOpcode}`, {
 		"type": "bubble",
 		"body": {
 			"type": "box",
