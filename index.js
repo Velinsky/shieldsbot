@@ -86,7 +86,10 @@ async function handleEvent(event) {
 	}
 
 	if (incomingMsg === "!t4") {
-		client.pushMessage(event.source.userId, "test");
+		client.pushMessage(event.source.userId, {
+			type: 'text',
+			text: 'Hello World!'
+		});
 		return Promise.resolve(null);
 	}
 
