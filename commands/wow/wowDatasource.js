@@ -1,5 +1,7 @@
 const moment = require("moment")
+const tz = require("moment-timezone")
 
+const DATE_FORMAT = "D. MMM HH:mm:ss Z"
 const PERSISTENCE_KEY = "CMD_wow"
 
 module.exports = async (persistence) => {
@@ -10,8 +12,18 @@ module.exports = async (persistence) => {
 			persistence.setKey(PERSISTENCE_KEY, timestamp)
 		},
 
-		nextWowTimezone(timezone) {
-			return moment(wowTimestamp).format("DD. MMM HH:mm:ss")
+		nextWowTimezone(timezones) {
+			let utcNextWow = moment.utc(wowTimestamp);
+
+			if (!Array.isArray(timezones)) {
+				return utcNextWow.tz(timezones).format(DATE_FORMAT)
+			}
+
+			return timezones.map((tzName) => ({
+				timezone: tzName,
+				time: utcNextWow.tz(tzName),
+				timeFormatted: utcNextWow.tz(tzName).format(DATE_FORMAT)
+			}))
 		},
 
 		nextWowIn() {
@@ -20,7 +32,11 @@ module.exports = async (persistence) => {
 			}
 
 			let duration = moment.duration(moment(wowTimestamp).diff())
-			return `Next War of Wonders is in ${duration.days()} days, ${duration.hours()} hours and ${duration.minutes()} minutes from now.`
+			let days = duration.days() > 0 ? (duration.days() + " days, ") : ""
+			let hours = duration.hours() > 0 ? (duration.hours() + " hours, ") : ""
+			let and = (days || hours) ? " and " : ""
+
+			return `In ${days}${hours}${and}${duration.minutes()} minutes from now.`
 		}
 	}
 }
