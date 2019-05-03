@@ -40,17 +40,20 @@ module.exports.handler = async function(message, user, persistence) {
 			spacing: 'md',
 			contents: [
 				{
+					flex: 2,
 					type: 'text',
 					size: "xs",
-					weight: "bold",
+					color: "#4a4a4a",
 					text: tzMap[zoneData.timezone]
 				},
 				{
 					type: 'separator'
 				},
 				{
+					flex: 3,
 					type: 'text',
-					size: "xs",
+					size: "xxs",
+					color: "#9c9c9c",
 					text: zoneData.timeFormatted
 				}
 			]
@@ -65,8 +68,10 @@ module.exports.handler = async function(message, user, persistence) {
 			'layout': 'vertical',
 			'contents': [
 				{
-					'type': 'text',
-					'text': 'Next War of Wonders'
+					color: "#8b0000",
+					align: "center",
+					type: 'text',
+					text: 'Next War of Wonders'
 				}
 			]
 		},
@@ -82,6 +87,7 @@ module.exports.handler = async function(message, user, persistence) {
 			'layout': 'vertical',
 			'contents': [
 				{
+					size: "sm",
 					'type': 'text',
 					'text': datasource.nextWowIn()
 				}
