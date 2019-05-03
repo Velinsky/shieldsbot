@@ -12,4 +12,13 @@ commands to manage list of t4s player for quick overview
 - next wow // will print all of no timzeone set yet
 - next wow GMT+7 // sets as default for user
 - next wow // if has default, will print in default
-- next wow all // will print all even with timzone set 
+- next wow all // will print all even with timzone set
+
+##### monsters
+- !monster [name]
+- !monsters display carousel of todays monsters
+with the newest in the first pos 
+
+
+# cfg
+radiant-chamber-55022.herokuapp.com/callback

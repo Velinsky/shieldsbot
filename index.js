@@ -3,8 +3,8 @@ const line = require('@line/bot-sdk');
 const express = require('express');
 
 const createCommands = require('./createCommands')
-// const persistenceBase = require('./persistence/memoryPersistence')
-const persistenceBase = require('./persistence/redisPersistence')
+const persistenceBase = require('./persistence/memoryPersistence')
+// const persistenceBase = require('./persistence/redisPersistence')
 
 let persistence = persistenceBase.create()
 let replier = createCommands(persistence)
@@ -83,6 +83,11 @@ async function handleEvent(event) {
 	}
 	else {
 		userName = null
+	}
+
+	if (incomingMsg === "!t4") {
+		client.pushMessage(event.source.userId, "test");
+		return Promise.resolve(null);
 	}
 
 	let result = await replier.textInput(incomingMsg, { userName });
