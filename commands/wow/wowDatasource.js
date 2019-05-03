@@ -33,7 +33,7 @@ module.exports = async (persistence) => {
 
 			let duration = moment.duration(moment(wowTimestamp).diff())
 			let days = duration.days() > 0 ? (duration.days() + " days, ") : ""
-			let hours = duration.hours() > 0 ? (duration.hours() + " hours, ") : ""
+			let hours = duration.hours() > 0 ? (duration.hours() + " hours") : ""
 			let and = (days || hours) ? " and " : ""
 
 			return `In ${days}${hours}${and}${duration.minutes()} minutes from now.`
