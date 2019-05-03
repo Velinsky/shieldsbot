@@ -1,4 +1,4 @@
-module.exports.flexWrapper = function (alt, obj) {
+module.exports.flexWrapper = function (obj) {
 	return {
 		"type": "flex",
 		"altText": "Upgrade your client to see the full message",
