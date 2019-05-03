@@ -26,8 +26,8 @@ module.exports.handler = async function(message, user, persistence) {
 		'Europe/London': 'London',
 		'Europe/Prague': 'CEST',
 		'Europe/Athens': 'Our greek gods',
-		'Asia/Shanghai': 'China',
-		'Asia/Ho_Chi_Minh': 'Vietnam'
+		'Asia/Ho_Chi_Minh': 'Vietnam',
+		'Asia/Shanghai': 'China'
 	};
 
 	let datesInZones = datasource.nextWowTimezone(Object.keys(tzMap));
