@@ -1,10 +1,12 @@
+const flexWrapper = require('./_utils/messageHelpers').flexWrapper
+
 const OPCODE = "!flexTest"
 
 module.exports.EXACT = OPCODE;
 module.exports.help = ""
 module.exports.description = ""
 module.exports.handler = async function(message, user, persistence, noOpcode) {
-	return {
+	return flexWrapper({
 		"type": "bubble",
 		"body": {
 			"type": "box",
@@ -32,5 +34,5 @@ module.exports.handler = async function(message, user, persistence, noOpcode) {
 				}
 			]
 		}
-	}
+	})
 }
