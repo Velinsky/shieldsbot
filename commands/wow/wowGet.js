@@ -65,11 +65,10 @@ module.exports.handler = async function(message, user, persistence) {
 		'type': 'bubble',
 		'header': {
 			'type': 'box',
-			backgroundColor: "#8b0000",
 			'layout': 'vertical',
 			'contents': [
 				{
-					color: "#ffffff",
+					color: "#8b0000",
 					align: "center",
 					type: 'text',
 					text: 'Next War of Wonders'
