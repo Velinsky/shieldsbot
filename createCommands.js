@@ -6,8 +6,9 @@ const randomCmd = require('./commands/random')
 const wowRegisterCmd = require('./commands/wow/wowRegister')
 const wowGetCmd = require('./commands/wow/wowGet')
 const authorCmd = require('./commands/author')
+const flexTest = require('./commands/flexTest')
 
-let cmds = [shieldsCmd, shieldsListCmd, randomCmd, wowRegisterCmd, wowGetCmd, authorCmd];
+let cmds = [shieldsCmd, shieldsListCmd, randomCmd, wowRegisterCmd, wowGetCmd, authorCmd, flexTest];
 
 module.exports = function (persistence) {
 	let mappedCommands = cmds.map(cmd => {

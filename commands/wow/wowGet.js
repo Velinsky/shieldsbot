@@ -15,7 +15,8 @@ module.exports.handler = async function(message, user, persistence) {
 	let timezone = message.replace(OPCODE, "").trim();
 
 	if (timezone) {
-		return Promise.resolve(datasource.nextWowTimezone(timezone));
+		let nextWow = datasource.nextWowTimezone(timezone);
+		return Promise.resolve(nextWow);
 	}
 
 	return Promise.resolve(datasource.nextWowIn());

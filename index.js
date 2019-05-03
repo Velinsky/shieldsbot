@@ -70,8 +70,6 @@ async function handleEvent(event) {
 	let incomingMsg = event.message.text
 
 	console.log('handling incoming message', incomingMsg);
-	// LIST SHIELDS
-
 
 	// ADD SHIELD
 	let replyText = '';
@@ -93,7 +91,11 @@ async function handleEvent(event) {
 		return Promise.resolve(null)
 	}
 
-	let echo = { type: 'text', text: result };
+	let echo = result;
+
+	if (!result.type) {
+		echo = { type: 'text', text: result };
+	}
 
 	// use reply API
 	return client.replyMessage(event.replyToken, echo);
