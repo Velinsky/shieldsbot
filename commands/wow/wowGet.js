@@ -47,12 +47,9 @@ module.exports.handler = async function(message, user, persistence) {
 					text: tzMap[zoneData.timezone]
 				},
 				{
-					type: 'separator'
-				},
-				{
 					flex: 3,
 					type: 'text',
-					size: "xxs",
+					size: "xs",
 					color: "#9c9c9c",
 					text: zoneData.timeFormatted
 				}
