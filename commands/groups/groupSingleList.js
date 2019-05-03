@@ -21,6 +21,15 @@ module.exports.handler = async function(message, user, persistence) {
 		}
 	})
 
+	if (lines.length === 0) {
+		lines.push({
+			"type": "text",
+			"text": "No one is here",
+			"color": "#00ff00",
+			"flex": 1
+		})
+	}
+
 	return flexWrapper(`Listing group ${noOpcode}`, {
 		type: "bubble",
 		header: {
