@@ -15,6 +15,11 @@ const config = {
 	channelSecret: "27f3dcfba6be05e24c76fe574b21126b",
 };
 
+const localConfig = {
+	channelAccessToken: "hsdRJBWHlU7KGUtytrLyDRaHCJqPvdP78GvWuAk+gmpZUxIn5Rqa+CxXcYxNFeXndAjzwJu9obxgNE9trpQnC0Wfd26sPk0qpaX2wrEVLGdDwgyxS3NuwRWnzmtUIA9e+J+Jfi2ZEoSzDUwowbCK7wdB04t89/1O/w1cDnyilFU=",
+	channelSecret: "e1d1276f2324e4bbaf73de99811b9179",
+}
+
 // create LINE SDK client
 const client = new line.Client(config);
 
@@ -108,7 +113,10 @@ async function handleEvent(event) {
 	}
 
 	// use reply API
-	return client.replyMessage(event.replyToken, echo);
+	return client.replyMessage(event.replyToken, echo).catch(e => {
+		console.log("request", e.originalError.config.data)
+		console.log("response", e.originalError.response.status, e.originalError.response.data)
+	});
 }
 
 // listen on port

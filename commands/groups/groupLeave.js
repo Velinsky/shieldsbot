@@ -1,18 +1,16 @@
 const flexWrapper = require('../_utils/messageHelpers').flexWrapper
 const groupsDatasource = require('./groupsDatasource')
-const flexStyles = require('./flexStyles')
 
-const OPCODE = "!groups"
+const OPCODE = "!group leave "
 
-module.exports.EXACT = OPCODE;
+module.exports.STARTS_WITH = OPCODE;
 module.exports.help = ""
 module.exports.description = ""
 module.exports.handler = async function(message, user, persistence) {
 	let datasource = await groupsDatasource(persistence);
 	let noOpcode = message.replace(OPCODE, "");
 
-	let groups = datasource.listGroups();
+	datasource.removeFromGroupByName(user.userName, noOpcode);
 
-	console.log(groups)
-	return flexWrapper("all groups", flexStyles.allGroups(groups))
+	return `User ${user.userName} was removed from the group ${noOpcode}. Probably.`
 }

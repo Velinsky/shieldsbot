@@ -32,7 +32,7 @@ module.exports = async (persistence) => {
 			let foundGroup = groups.find(group => group.id === groupName);
 
 			if (!foundGroup) {
-				throw new Error(E_GROUP_NOT_FOUND);
+				throw { code: E_GROUP_NOT_FOUND };
 			}
 
 			if (!foundGroup.members.find(member => member.userId === player.userId)) {
@@ -46,7 +46,7 @@ module.exports = async (persistence) => {
 			let foundGroup = groups.find(group => group.id === groupName);
 
 			if (!foundGroup) {
-				throw new Error(E_GROUP_NOT_FOUND);
+				throw { code: E_GROUP_NOT_FOUND };
 			}
 
 			let foundIndex;
@@ -65,7 +65,7 @@ module.exports = async (persistence) => {
 			let foundGroup = groups.find(group => group.id === groupName);
 
 			if (!foundGroup) {
-				throw new Error(E_GROUP_NOT_FOUND);
+				throw { code: E_GROUP_NOT_FOUND };
 			}
 
 			return foundGroup;

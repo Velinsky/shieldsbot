@@ -12,9 +12,10 @@ const groupAlert = require('./commands/groups/groupAlert')
 const groupList = require('./commands/groups/groupList')
 const groupSingleList = require('./commands/groups/groupSingleList')
 const groupRemove = require('./commands/groups/groupRemove')
+const groupLeave = require('./commands/groups/groupLeave')
 
 let cmds = [shieldsCmd, shieldsListCmd, randomCmd, wowRegisterCmd, wowGetCmd, authorCmd, flexTest,
-	groupAdd, groupAlert, groupList, groupSingleList, groupRemove];
+	groupAdd, groupAlert, groupList, groupSingleList, groupRemove, groupLeave];
 
 module.exports = function (persistence) {
 	let mappedCommands = cmds.map(cmd => {
