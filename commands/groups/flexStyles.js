@@ -4,7 +4,7 @@ module.exports.groupPage = function(group, user) {
 			type: 'text',
 			text: member.userName,
 			color: '#2f2f2f',
-			flex: 1
+			flex: 0
 		}
 	})
 

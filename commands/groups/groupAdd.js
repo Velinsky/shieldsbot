@@ -32,5 +32,5 @@ module.exports.handler = async function(message, user, persistence) {
 	}
 
 
-	return `${user.userName} was added to group ${noOpcode}`
+	return `${user.userName} was added to the group ${noOpcode}`
 }
