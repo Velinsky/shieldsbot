@@ -13,6 +13,10 @@ module.exports.description = 'Tell when next wow will take place. Experimental t
 module.exports.handler = async function(message, user, persistence) {
 	let datasource = await wowDatasource(persistence)
 
+	if (!datasource.hasNextWow()) {
+		return "Date for next War of Wonders is not set. To register next date, use: !next wow in [dd:hh:mm]"
+	}
+
 	let timezone = message.replace(OPCODE, '').trim();
 
 	if (timezone) {

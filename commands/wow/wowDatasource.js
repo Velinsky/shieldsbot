@@ -5,7 +5,8 @@ const DATE_FORMAT = "D. MMM HH:mm:ss Z"
 const PERSISTENCE_KEY = "CMD_wow"
 
 module.exports = async (persistence) => {
-	let wowTimestamp = await persistence.getKey(PERSISTENCE_KEY) || {}
+	let wowTimestamp = await persistence.getKey(PERSISTENCE_KEY) || 0
+	let utcNextWow = moment.utc(wowTimestamp);
 
 	return {
 		setNextWow(timestamp) {
@@ -24,6 +25,14 @@ module.exports = async (persistence) => {
 				time: utcNextWow.tz(tzName),
 				timeFormatted: utcNextWow.tz(tzName).format(DATE_FORMAT)
 			}))
+		},
+
+		hasNextWow() {
+			if (!wowTimestamp || wowTimestamp < (+new Date())) {
+				return false
+			}
+
+			return true;
 		},
 
 		nextWowIn() {

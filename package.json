@@ -15,6 +15,7 @@
     "ioredis": "^4.9.0",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.25",
+    "mongodb": "^3.2.3",
     "ramda": "^0.26.1"
   }
 }
