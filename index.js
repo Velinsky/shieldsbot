@@ -3,7 +3,8 @@ const line = require('@line/bot-sdk');
 const express = require('express');
 
 const createCommands = require('./createCommands')
-const persistenceBase = require('./persistence/memoryPersistence')
+const persistenceBase = require('./persistence/postgresPersistence')
+// const persistenceBase = require('./persistence/memoryPersistence')
 // const persistenceBase = require('./persistence/redisPersistence')
 
 let persistence = persistenceBase.create()

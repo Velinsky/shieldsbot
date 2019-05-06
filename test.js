@@ -7,7 +7,8 @@ const readline = require('readline').createInterface({
 
 // const persistenceBase = require('./persistence/memoryPersistence')
 // const persistenceBase = require('./persistence/redisPersistence')
-const persistenceBase = require('./persistence/mongoPersistence')
+// const persistenceBase = require('./persistence/mongoPersistence')
+const persistenceBase = require('./persistence/postgresPersistence')
 
 
 let persistence = persistenceBase.create()
