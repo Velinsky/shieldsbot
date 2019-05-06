@@ -1,5 +1,5 @@
 module.exports.groupPage = function(group, user) {
-	let lines = group.members.map((member) => {
+	let lines = group.members.filter(member => member && member.userId).map((member) => {
 		return {
 			type: 'text',
 			text: member.userName,

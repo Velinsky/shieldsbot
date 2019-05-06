@@ -7,6 +7,7 @@ const OPCODE = "!group add "
 module.exports.STARTS_WITH = OPCODE;
 module.exports.help = ""
 module.exports.description = ""
+module.exports.needsUser = true
 /**
  *
  * @param message

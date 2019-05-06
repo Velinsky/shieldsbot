@@ -29,6 +29,10 @@ module.exports = async (persistence) => {
 
 	return {
 		addToGroup(player, groupName) {
+			if (!player.userId) {
+				return;
+			}
+
 			let foundGroup = groups.find(group => group.id === groupName);
 
 			if (!foundGroup) {
