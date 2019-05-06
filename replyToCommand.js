@@ -56,7 +56,7 @@ module.exports.create = (persistence, commands) => {
 			}
 
 			if (matchingCommand) {
-				if (!user.userName && matchingCommand.needsUser) {
+				if (matchingCommand.needsUser && (!user.userName || !user.userId)) {
 					return Promise.resolve(`Sorry, I can't respond to [${cmd}] since LINE API won't send me your ID. Try adding me to friends first.`)
 				}
 				return matchingCommand.handler(cmd, user, persistence, lineApiClient)

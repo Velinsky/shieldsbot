@@ -35,6 +35,7 @@ module.exports = function (persistence) {
 		retObj.description = cmd.description;
 		retObj.help = cmd.help;
 		retObj.summonDocumentation = summonDocumentation;
+		retObj.needsUser = cmd.needsUser;
 
 		return retObj;
 	})

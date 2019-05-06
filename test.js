@@ -13,7 +13,7 @@ const persistenceBase = require('./persistence/postgresPersistence')
 
 let persistence = persistenceBase.create()
 let replier = createCommands(persistence)
-const handle = (cmd) => replier.textInput(cmd, { userName: "Butter King", userId: "123"}).then(console.log, console.error)
+const handle = (cmd) => replier.textInput(cmd, { userName: "Butter King" }).then(console.log, console.error)
 
 // handle("shield 2 day")
 const chat = () => readline.question(`-> `, (cmd) => {
