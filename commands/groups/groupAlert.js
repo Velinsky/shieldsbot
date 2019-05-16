@@ -13,7 +13,7 @@ module.exports.handler = async function(message, user, persistence, client) {
 	let customMessage = "Please respond immediately.";
 
 	if (noOpcode.includes(" ")) {
-		let [a, b] = noOpcode.split(" ");
+		let [a, b] = noOpcode.split(/ (.+)/);
 		groupName = a;
 		customMessage = b;
 	}
@@ -21,6 +21,7 @@ module.exports.handler = async function(message, user, persistence, client) {
 	let group = datasource.listGroup(groupName)
 
 	let promises = group.members.map(member => {
+		console.log(member, customMessage)
 		return client.pushMessage(member.userId, {
 			type: 'text',
 			text: `You're being alerted as [${group.description}] by the user [${user.userName}]. ${customMessage.trim()}`
