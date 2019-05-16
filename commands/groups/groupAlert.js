@@ -8,13 +8,22 @@ module.exports.help = ''
 module.exports.description = ''
 module.exports.handler = async function(message, user, persistence, client) {
 	let datasource = await groupsDatasource(persistence);
-	let noOpcode = message.replace(OPCODE, '');
-	let group = datasource.listGroup(noOpcode)
+	let noOpcode = message.replace(OPCODE, '').trim();
+	let groupName = noOpcode;
+	let customMessage = "Please respond immediately.";
+
+	if (noOpcode.includes(" ")) {
+		let [a, b] = noOpcode.split(" ");
+		groupName = a;
+		customMessage = b;
+	}
+
+	let group = datasource.listGroup(groupName)
 
 	let promises = group.members.map(member => {
 		return client.pushMessage(member.userId, {
 			type: 'text',
-			text: `You're being alerted as [${group.description}] by the user [${user.userName}]. Please respond immediately.`
+			text: `You're being alerted as [${group.description}] by the user [${user.userName}]. ${customMessage.trim()}`
 		}).then(success => {
 			return {
 				error: false,
