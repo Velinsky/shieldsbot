@@ -102,7 +102,7 @@ module.exports.groupPage = function(group, user) {
 					style: 'primary',
 					action: {
 						type: 'message',
-						label: 'Notify all',
+						label: 'Alert all',
 						text: '!alert ' + group.id
 					}
 				}

@@ -13,6 +13,5 @@ module.exports.handler = async function(message, user, persistence) {
 
 	let groups = datasource.listGroups();
 
-	console.log(groups)
 	return flexWrapper("all groups", flexStyles.allGroups(groups))
 }
