@@ -20,5 +20,5 @@ module.exports.handler = async function(message, user, persistence) {
 
 	datasource.removeFromGroupByName(userName, groupName);
 
-	return `User ${user.userName} was removed from the group ${noOpcode}. Probably.`
+	return `User ${userName} was removed from the group ${groupName}. Probably.`
 }
