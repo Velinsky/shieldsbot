@@ -4,7 +4,7 @@ const groupsDatasource = require('./groupsDatasource')
 const OPCODE = "!group remove "
 
 module.exports.STARTS_WITH = OPCODE;
-module.exports.help = ""
+module.exports.help = "!group remove groupName:userName"
 module.exports.description = ""
 module.exports.handler = async function(message, user, persistence) {
 	let datasource = await groupsDatasource(persistence);
