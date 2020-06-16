@@ -43,7 +43,7 @@ module.exports.handler = async function(message, user, persistence, client) {
 	return Promise.all(promises).then((results) => {
 			let finalMessage = [];
 			let successUsers = results.filter(r => !r.error).map(r => r.target);
-			let failedUsers = results.filter(r => r.error).map(r => r.target);
+			let failedUsers = results.filter(r => r.error).map(r => `${r.target} (${r.e.code})`);
 
 			if (successUsers.length > 0) {
 				finalMessage.push("Alerted users: " + successUsers.join(", "));
