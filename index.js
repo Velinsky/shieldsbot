@@ -84,10 +84,16 @@ async function handleEvent(event) {
 
 	console.log("source", event.source)
 	if (event.source.userId) {
-		let profile = await client.getGroupMemberProfile(event.source.groupId, event.source.userId)
+		let profile
+		try {
+			profile = await client.getGroupMemberProfile(event.source.groupId, event.source.userId)
+		} catch (e) {
+
+		}
+
 		console.log("profile", profile)
 		userId = event.source.userId
-		userName = profile.displayName;
+		userName = profile ? profile.displayName : event.source.userId;
 	}
 	else {
 		userName = null
